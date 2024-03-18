@@ -7,7 +7,7 @@ export class Usuario {
     private _id: string = randomUUID()
     private _seguidos: string[] = []
     private _tweetsPorUsuario: Tweet[] = []
-    private _gostar: Gostar[] =[]
+    private _gostar: Gostar[] = []
 
     constructor(
         private _nome: string,
