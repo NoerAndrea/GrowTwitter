@@ -38,5 +38,4 @@ export class UsuarioRepositorioEmMemoria implements UsuarioRepositorio {
         console.log(`${usuarioASerSeguido.username} é seguido ${usuarioQuerSeguir.username}`)
         console.log('_____________')
     }    
-    
 }

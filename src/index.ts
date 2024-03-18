@@ -41,10 +41,15 @@ usuarioLista.criarTweet(tweet5, beltrano)
 console.log('----------------');
 
 //gostar
-tweetLista.gostar('siclano', tweet1)
-console.log('----------------');
-console.log(tweetLista.pegarCurtidas());
-console.log(tweetLista.mostrarGostar());
+tweetLista.gostar('siclano', tweet1);
+tweetLista.gostar('beltrano', tweet1);
+tweetLista.gostar('fulano', tweet1);
+
+tweetLista.gostar('beltrano', tweet2);
+tweetLista.gostar('fulano', tweet2);
+
+tweetLista.gostar('beltrano', tweet3);
+tweetLista.gostar('beltrano', tweet4);
 console.log('----------------');
 
 //seguir
@@ -58,7 +63,9 @@ usuarioLista.seguir(fulano, beltrano)
 console.log('----------------');
 
 //mostrar
-siclano.mostraTweet()
+siclano.mostraTweet();
 
 fulano.mostraTweet()
+
+beltrano.mostraTweet();
 

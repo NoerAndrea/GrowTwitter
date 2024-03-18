@@ -36,12 +36,31 @@ export class Usuario {
 
     public mostraTweet(): void {
         this._tweetsPorUsuario.forEach(elemento => {
-            console.log(`@${this.username}: ${elemento.conteudo}`)
-            console.log(`${elemento.gostar}`);
+            console.log(`@${this.username}: ${elemento.conteudo}`);
+    
+            const gostar = elemento.gostar;
+            const curtidas = gostar.length;
+
+            if(curtidas === 0){
+                console.log(`   [0 curtidas]`);
+            }    
+            if (curtidas > 0) {
+                const primeiroUsuario = gostar[0].username;
+
+                if (curtidas === 1) {
+                    console.log(`   [@${primeiroUsuario} curtiu]`);
+                } else {
+                    const outrosCurtiram = curtidas - 1;
+                    
+                    console.log(`   [@${primeiroUsuario} e mais ${outrosCurtiram} usuário(s) curtiram]`);
+                }
+            }
+    
             console.log(elemento.tipo);
-            console.log('________________');            
-        })
-    }
+            console.log('__');
+        });
+    } 
+    
     public mostraPerfil(){
         if(this.seguidos.length === 0){
             return 'Você não possiu seguidor(es).'

@@ -7,26 +7,12 @@ export class TweetRepositorioEmMemoria implements TweetRepositorio{
 
     public gostar( nomeUsuario: string, mensagem: Tweet): number | undefined {
             const novoGostar = new Gostar(nomeUsuario,mensagem)
-            gostars.push(novoGostar)
+            mensagem.gostar.push(novoGostar)
             return 
     }  
-    
 
-    public pegarCurtidas(): number{
-        return gostars.length
-    }
-
-    public mostrarGostar() {
-        const curtidas = this.pegarCurtidas()
-
-        if(curtidas === 0){
-            return ''
-        }
-        if(curtidas === 1){
-            return `[@${gostars[0].username} curtiu]`
-        }else{
-            return `[@${gostars[curtidas - 1].username} mais ${curtidas - 1} curtiram.]`
-        }        
+    public adicionarResposta(conteudo:Tweet){
+        
     }
 }
 
