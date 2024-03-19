@@ -1,13 +1,11 @@
 import { randomUUID } from "crypto"
 import { Tweet } from "./tweet"
-import { usuarios } from "../banco/usuario.database"
 import { Gostar } from "./gostar"
 import { Resposta } from "./resposta"
-import { respostas} from "../banco/resposta.database"
 
 export class Usuario {
     private _id: string = randomUUID()
-    private _seguidos: string[] = []
+    private _seguidos: Usuario[] = []
     private _tweetsPorUsuario: Tweet[] = []
     private _gostar: Gostar[] = []
     private _resposta: Resposta[] = [];
@@ -27,7 +25,7 @@ export class Usuario {
     public get nome(): string{
         return this._nome
     } 
-    public get seguidos(): string[] {
+    public get seguidos(): Usuario[] {
         return this._seguidos
     }
     public get tweetsPorUsuario(): Tweet[] {
@@ -64,33 +62,33 @@ export class Usuario {
            const tipo = elemento.tipo;           
            
            if (tipo === 'responder') {
-            if (respostas.length > 0 && respostas[0].mensagem === elemento) {
-                const autorResposta = respostas[0].autorResposta.username;
-                const conteudoResposta = respostas[0].conteudoRespondido;
-            
-                console.log(`>${autorResposta}: ${conteudoResposta}`);
+            if(elemento.resposta.length > 0){
+                elemento.resposta.forEach(resposta => {
+                    console.log(`>@${resposta.autor.username}: ${resposta.conteudo}`);                    
+                })
             } 
         }          
-            console.log('__');
+            console.log('------------------------');
         });
     } 
 
-    public mostraPerfil(){
-        if(this.seguidos.length === 0){
-            return 'Você não possiu seguidor(es).'
-        }
-        for(let i of this.seguidos){
-            const pesquisa = usuarios.filter(seguindo => seguindo.username === i)
-            const seguidoreUsuario = pesquisa.filter(usuario => usuario.mostraTweet)
-
-            console.log(seguidoreUsuario);            
-        }
-        const imprimeUsuario = this.tweetsPorUsuario.forEach(item => {
-            console.log(`${this.username}: ${item.gostar}`);
-            console.log(`${item.gostar}`);
-            console.log(item.tipo);
-            console.log('________________');
-        })
-        console.log(imprimeUsuario);        
+    public mostraPerfil(): void {
+        console.log(`Tweets de @${this.username}:`);
+            this.tweetsPorUsuario.forEach(tweet => {
+                console.log(`   Conteúdo: ${tweet.conteudo}`);
+                console.log(`   Curtidas: ${tweet.gostar.length}`);
+                console.log(`   Respostas: ${tweet.resposta.length}`);
+                console.log('-----------------');
+        });
+    
+        this._seguidos.forEach(usuario => {
+            console.log(`Tweets de @${usuario.username}:`);
+            usuario.tweetsPorUsuario.forEach(tweet => {
+                console.log(`   Conteúdo: ${tweet.conteudo}`);
+                console.log(`   Curtidas: ${tweet.gostar.length}`);
+                console.log(`   Respostas: ${tweet.resposta.length}`);
+                console.log('________________');
+            });
+        });
     }
 }

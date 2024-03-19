@@ -14,14 +14,5 @@ export class Resposta {
     }
     public get idResposta(): string{
         return this._idResposta
-    }
-    public get autorResposta(): Usuario{
-        return this.autor
-    }
-    public get mensagemRespondida(): Tweet{
-        return this.mensagem
-    }
-    public get conteudoRespondido(): string{
-        return this.conteudo
-    }
+    }    
 }

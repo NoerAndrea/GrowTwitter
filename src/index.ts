@@ -17,9 +17,9 @@ const fulano: Usuario = new Usuario('Fulano', 'fulano@email.com', 'fulano', '123
 const meiaNoite: Usuario = new Usuario('Meia Noite', 'meianoite@email.com', 'fulano', '123456');
 
 //adicionar usuarios no banco de dados
-console.log(usuarioLista.criar(siclano));
-console.log(usuarioLista.criar(beltrano));
-console.log(usuarioLista.criar(fulano));
+usuarioLista.criar(siclano);
+usuarioLista.criar(beltrano);
+usuarioLista.criar(fulano);
 
 //erro - mesmo Username
 console.log('----------------');
@@ -38,7 +38,6 @@ usuarioLista.criarTweet(tweet2, siclano)
 usuarioLista.criarTweet(tweet3, fulano)
 usuarioLista.criarTweet(tweet4, fulano)
 usuarioLista.criarTweet(tweet5, beltrano)
-console.log('----------------');
 
 //gostar
 tweetLista.gostar('siclano', tweet1);
@@ -50,28 +49,36 @@ tweetLista.gostar('fulano', tweet2);
 
 tweetLista.gostar('beltrano', tweet3);
 tweetLista.gostar('beltrano', tweet4);
-console.log('----------------');
+
 
 //resposta
 tweetLista.adicionarResposta(fulano, 'Oi', tweet1)
-console.log('----------------');
+
 tweetLista.adicionarResposta(fulano, 'Oi', tweet2)
-console.log('----------------');
+
+tweetLista.adicionarResposta(beltrano, 'Oi', tweet2)
+
+tweetLista.adicionarResposta(beltrano, 'Rede Social', tweet3)
+tweetLista.adicionarResposta(siclano, 'Hello World', tweet3)
+tweetLista.adicionarResposta(fulano, 'Todos conectados!', tweet3)
 
 //seguir
 usuarioLista.seguir(siclano, fulano)
 usuarioLista.seguir(siclano, beltrano)
-console.log('----------------');
+
 usuarioLista.seguir(siclano, siclano)
-console.log('----------------');
+
 usuarioLista.seguir(fulano, siclano)
 usuarioLista.seguir(fulano, beltrano)
-console.log('----------------');
 
-//mostrar
+
+//mostrar tweets
 siclano.mostraTweet();
 
 fulano.mostraTweet()
 
 beltrano.mostraTweet();
+
+//mostrar perfil
+siclano.mostraPerfil();
 

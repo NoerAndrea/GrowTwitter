@@ -1,4 +1,3 @@
-import { respostas } from "../banco/resposta.database";
 import { TweetRepositorio } from "../contratos/tweet-repositorio.contratos";
 import { Gostar } from "../modelos/gostar";
 import { Resposta } from "../modelos/resposta";
@@ -15,10 +14,10 @@ export class TweetRepositorioEmMemoria implements TweetRepositorio{
 
     public adicionarResposta(autor: Usuario, conteudo: string, tweet: Tweet){
         const novaResposta = new Resposta(tweet, conteudo, autor)
-        console.log(novaResposta);
-    
-        if(tweet.tipo === 'responder'){
-            respostas.push(novaResposta)
+        
+        const tipo = tweet.tipo
+        if(tipo === 'responder'){
+            tweet.resposta.push(novaResposta)
         }        
         return 'Este Tweet não pode ser respondido.'
     }
