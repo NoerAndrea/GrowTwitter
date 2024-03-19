@@ -52,6 +52,12 @@ tweetLista.gostar('beltrano', tweet3);
 tweetLista.gostar('beltrano', tweet4);
 console.log('----------------');
 
+//resposta
+tweetLista.adicionarResposta(fulano, 'Oi', tweet1)
+console.log('----------------');
+tweetLista.adicionarResposta(fulano, 'Oi', tweet2)
+console.log('----------------');
+
 //seguir
 usuarioLista.seguir(siclano, fulano)
 usuarioLista.seguir(siclano, beltrano)

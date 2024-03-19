@@ -1,5 +1,4 @@
 import { randomUUID } from "crypto"
-import { Usuario } from "./usuario";
 import { Tweet } from "./tweet";
 
 export class Gostar {

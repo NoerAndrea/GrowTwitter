@@ -2,12 +2,15 @@ import { randomUUID } from "crypto"
 import { Tweet } from "./tweet"
 import { usuarios } from "../banco/usuario.database"
 import { Gostar } from "./gostar"
+import { Resposta } from "./resposta"
+import { respostas} from "../banco/resposta.database"
 
 export class Usuario {
     private _id: string = randomUUID()
     private _seguidos: string[] = []
     private _tweetsPorUsuario: Tweet[] = []
     private _gostar: Gostar[] = []
+    private _resposta: Resposta[] = [];
 
     constructor(
         private _nome: string,
@@ -33,6 +36,9 @@ export class Usuario {
     public get gostar(): Gostar[]{
         return this._gostar
     }
+    public get resposta(): Resposta[]{
+        return this._resposta
+    }
 
     public mostraTweet(): void {
         this._tweetsPorUsuario.forEach(elemento => {
@@ -54,13 +60,21 @@ export class Usuario {
                     
                     console.log(`   [@${primeiroUsuario} e mais ${outrosCurtiram} usuário(s) curtiram]`);
                 }
-            }
-    
-            console.log(elemento.tipo);
+            }                
+           const tipo = elemento.tipo;           
+           
+           if (tipo === 'responder') {
+            if (respostas.length > 0 && respostas[0].mensagem === elemento) {
+                const autorResposta = respostas[0].autorResposta.username;
+                const conteudoResposta = respostas[0].conteudoRespondido;
+            
+                console.log(`>${autorResposta}: ${conteudoResposta}`);
+            } 
+        }          
             console.log('__');
         });
     } 
-    
+
     public mostraPerfil(){
         if(this.seguidos.length === 0){
             return 'Você não possiu seguidor(es).'
